@@ -16,6 +16,19 @@ function insertAccount($data){
   }
 }
 
+function addproduct($data){
+  global $conn;
+
+  extract($data);
+  $sql = "INSERT INTO product VALUES ('', '$productname', '$productprice', '$productdetail')";
+  if($conn->query($sql)){
+    $_SESSION['success_msg'] = "Data saved!.";
+    return TRUE;
+  }else{
+    return FALSE;
+  }
+}
+
 function insertOrder($data){
   global $conn;
 
@@ -31,11 +44,50 @@ function insertOrder($data){
   }
 }
 
+function clothorder($data){
+  global $conn;
+
+  extract($data);
+  $sql = "INSERT INTO baju VALUES ('', '$name', '$address', '$phone',
+  '$cloth', '$size', '$total')";
+
+  if($conn->query($sql)){
+    $_SESSION['success_msg'] = "Data saved!.";
+    return TRUE;
+  }else{
+    return FALSE;
+  }
+}
+
 // --------------------- view part ------------------------
 
 function viewAccountDebit(){
   global $conn;
   $sql = "SELECT * FROM account WHERE type='debit' ORDER BY accountid DESC";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows >= 0) {
+    return $result;
+  } else {
+    return false;
+  }
+}
+
+function showProductDetail(){
+  global $conn;
+  $sql = "SELECT * FROM product ORDER BY productid DESC";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows >= 0) {
+    return $result;
+  } else {
+    return false;
+  }
+}
+
+function showcloth(){
+  global $conn;
+  $sql = "SELECT * FROM baju  ORDER BY id DESC";
   $result = $conn->query($sql);
 
   if ($result->num_rows >= 0) {

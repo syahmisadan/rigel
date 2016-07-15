@@ -1,6 +1,6 @@
 <?php
 require_once "../model/query.php";
-$cloth = showcloth();
+$product = showProductDetail();
 $i = 1;
 
 ?>
@@ -72,59 +72,26 @@ $i = 1;
 
                   <div class="x_content">
                     <br />
-                    <form action="../controller/ctrcloth.php" method="post" name="data" data-parsley-validate class="form-horizontal form-label-left">
+                    <form action="../controller/ctrlproduct.php" method="post" name="data" data-parsley-validate class="form-horizontal form-label-left">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="productname" name="productname" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Address <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Price <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea class="form-control" name="address" id="address" rows="5" ></textarea>
+                          <input type="number" id="productprice" min="1" name="productprice" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Phone no. <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Detail <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cloth Code <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" id="cloth" name="cloth" >
-                            <option value="Team Instint (TI)">Team Instint (TI)</option>
-                            <option value="Team Mystic (TM)">Team Mystic (TM)</option>
-                            <option value="Team Valor (TV)">Team Valor (TV)</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cloth Size <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" id="size" name="size" >
-                            <option value="xs">XS</option>
-                            <option value="s">S</option>
-                            <option value="m">M</option>
-                            <option value="l">L</option>
-                            <option value="xl">XL</option>
-                            <option value="xxl">XXL</option>
-                            <option value="xxxl">XXXL</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Total Price <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="productdetail" name="productdetail" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="ln_solid"></div>
@@ -157,28 +124,22 @@ $i = 1;
                     <tr>
                       <th width="3%">No. </th>
                       <th width="30%">Name </th>
-                      <th width="30%">address</th>
-                      <th width="15%">Hp</th>
-                      <th width="20%">Code</th>
-                      <th width="5%">Size</th>
-                      <th width="10%">Total</th>
+                      <th width="20%">Price</th>
+                      <th width="10%">Detail</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    if($cloth == FALSE){
+                    if($product == FALSE){
                       echo "<tr><td colspan=6>No data</td></tr>";
                     }else{
-                      while($row = $cloth->fetch_assoc()) {
+                      while($row = $product->fetch_assoc()) {
                         ?>
                         <tr>
                           <td><?= $i?></td>
-                          <td><?= $row['name']; ?></td>
-                          <td><?= $row['address']; ?></td>
-                          <td><?= $row['phoneNo']; ?></td>
-                          <td><?= $row['code']; ?></td>
-                          <td><?= $row['size']; ?></td>
-                          <td><?= $row['total']; ?></td>
+                          <td><?= $row['productname']; ?></td>
+                          <td><?= $row['productprice']; ?></td>
+                          <td><?= $row['productdetail']; ?></td>
                         </tr>
                         <?php
                         $i++; }

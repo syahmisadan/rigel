@@ -87,7 +87,7 @@ $i = 1;
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <?php
-                              echo "<select name='product' id='product'>";
+                              echo "<select class='form-control'  name='product' id='product'>";
                               while ($row = $product->fetch_assoc()) {
                                   echo "<option value='" . $row['productname'] ."'>" . $row['productname'] . ' (RM '. ($row['productprice']) . ')' ."</option>";
                               }
@@ -114,7 +114,7 @@ $i = 1;
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <?php
-                              echo "<select name='typepayment' id='typepayment'>";
+                              echo "<select class='form-control'  name='typepayment' id='typepayment'>";
                               while ($row = $payment->fetch_assoc()) {
                                   echo "<option value='" . $row['paymenttype'] ."'>" . $row['paymenttype'] ."</option>";
                               }
